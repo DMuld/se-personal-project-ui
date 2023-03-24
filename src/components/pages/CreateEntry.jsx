@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../../url';
 import axios from 'axios';
+axios.defaults.withCredentials = false;
 
 export default function CreateEntry() {
 
@@ -44,7 +46,8 @@ export default function CreateEntry() {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("/insertFoodRow", inputs);
+            // axios.get(`${API_URL}/your/route`);
+            const res = await axios.post(`${API_URL}/insertFoodRow`, inputs);
             console.log(res);
         } catch (err) {
             console.log(err);

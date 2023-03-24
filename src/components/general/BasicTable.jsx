@@ -7,7 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { API_URL } from '../../url';
 import axios from 'axios';
+axios.defaults.withCredentials = false;
 
 export default function BasicTable() {
   const [rows, setRows] = useState([]);
@@ -26,7 +28,7 @@ export default function BasicTable() {
     async function pullFoodData() {
       try {
           let temp = [];
-          const res = await axios.get("/readAllFoodRows");
+          const res = await axios.get(`${API_URL}/readAllFoodRows`);
           res.data.forEach(row => {
             temp.push(createData(row.food, row.calories, row.fat, row.carbs, row.protein))
           });
